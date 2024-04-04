@@ -3,6 +3,7 @@ const CONTAINER = document.querySelector(".container");
 const SEARCH = document.querySelector(".search_box button");
 const WEATHER_BOX = document.querySelector(".weather_box");
 const WEATHER_DETAILS = document.querySelector(".weather_details");
+const TIME_AND_DATE = document.querySelector(".time_and_date");
 
 const ERROR404 = document.querySelector(".not_found");
 
@@ -24,6 +25,10 @@ SEARCH.addEventListener("click", () => {
   )
     .then((response) => response.json())
     .then((json) => {
+      const currentDate = new Date().toDateString();
+      const currentTime = new Date().toLocaleTimeString();
+      TIME_AND_DATE.innerHTML = `${currentTime} ${currentDate} `;
+
       // Handling 404 error if city is not found
       if (json.cod == "404") {
         CITY_HIDE.textContent = city;
